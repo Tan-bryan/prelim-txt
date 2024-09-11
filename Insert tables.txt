@@ -1,0 +1,55 @@
+drop table Customers;
+drop table Orders;
+drop table Shippings;
+
+CREATE TABLE Categories (
+  category_id INT PRIMARY KEY,
+  category_name VARCHAR(100)
+);
+
+CREATE TABLE Movies (
+  movie_id INT PRIMARY KEY,
+  title VARCHAR(255),
+  release_year INT,
+  category_id INT,
+  duration_minutes INT,
+  rating VARCHAR(5),
+  description TEXT
+);
+
+CREATE TABLE Customers (
+  customer_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
+  phone_number VARCHAR(15),
+  address VARCHAR(255),
+  registration_date DATE,
+  membership_status VARCHAR (20)
+);
+
+CREATE TABLE Inventory (
+  inventory_id INT PRIMARY KEY,
+  movie_id INT,
+  available_copies INT NOT NULL,
+  total_copies INT NOT NULL
+);
+
+
+CREATE TABLE Staff (
+  staff_id INT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  hire_date DATE,
+  email VARCHAR(255) UNIQUE,
+  role VARCHAR(10)
+);
+
+CREATE TABLE Rentals (
+  rental_id INT,
+  inventory_id INT,
+  customer_id INT,
+  rental_date DATE,
+  due_date DATE,
+  return_date DATE,
+  staff_id INT
+);
+

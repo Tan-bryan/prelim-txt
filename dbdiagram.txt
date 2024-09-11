@@ -1,0 +1,48 @@
+Table Movies {
+  movie_id INT pk
+  title varchar
+  release_year INT
+  category_id INT [ref: > Categories.category_id] 
+  duration_minutes INT
+  rating VARCHAR(5) 
+  description TEXT
+}
+Table Categories {
+  category_id INT [pk, increment] 
+  category_name VARCHAR(100)
+}
+
+Table Customers {
+  customer_id INT pk 
+  name VARCHAR(255) 
+  email VARCHAR(255) [unique] 
+  phone_number VARCHAR(15)
+  address VARCHAR(255)
+  registration_date DATE 
+  membership_status ENUM('active', 'inactive', 'banned') [default: 'active']
+}
+
+Table Inventory {
+  inventory_id INT [pk, increment] 
+  movie_id INT [ref: > Movies.movie_id] 
+  available_copies INT 
+  total_copies INT 
+}
+
+Table Rentals {
+  rental_id INT pk
+  inventory_id INT [ref: > Inventory.inventory_id] 
+  customer_id INT [ref: > Customers.customer_id] 
+  rental_date DATE 
+  due_date DATE 
+  return_date DATE
+  staff_id INT [ref: > Staff.staff_id] 
+}
+
+Table Staff {
+  staff_id INT pk
+  name VARCHAR(255) [not null]
+  hire_date DATE
+  email VARCHAR(255) [unique] 
+  role ENUM('manager', 'clerk') [default: 'clerk']
+}

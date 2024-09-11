@@ -1,0 +1,26 @@
+questions:
+
+//MOVIES RELEASED ON A CERTAIN YEAR
+SELECT title, release_year
+FROM Movies
+WHERE release_year > 2000;
+
+//MOVIES ON A SPECIFIC CATEGORY AND WHEN IT WAS RELEASED
+SELECT title, release_year
+FROM Movies 
+JOIN Categories ON Movies.category_id = Categories.category_id
+WHERE category_name = 'Romance';
+
+//NUMBER OF RENTALS PER STAFF
+SELECT Staff.name AS staff_name, Staff.staff_id, COUNT(*) AS rental_count
+FROM Rentals
+JOIN Staff ON Rentals.staff_id = Staff.staff_id
+GROUP BY Staff.staff_id, Staff.name;
+
+//Number of Movies in Each Category
+SELECT Categories.category_name, COUNT(Movies.movie_id) AS movie_count
+FROM Movies
+JOIN Categories ON Movies.category_id = Categories.category_id
+GROUP BY Categories.category_name;
+
+
